@@ -1,0 +1,850 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26F793AE956EF06A4295FE6C /* Pods_Precious_Time.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5D1B4A626F6041ECE9E687 /* Pods_Precious_Time.framework */; };
+		A544CE56298C32BE00227534 /* TimeInterval+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = A544CE55298C32BE00227534 /* TimeInterval+Format.swift */; };
+		A5884E7D2989636A00F2A86F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5884E7C2989636A00F2A86F /* CoreDataManager.swift */; };
+		A5884E81298963D800F2A86F /* PreciousTimeDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5884E7F298963D800F2A86F /* PreciousTimeDataModel.xcdatamodeld */; };
+		A5884E8829896C7200F2A86F /* TrackedTimeEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5884E8629896C7200F2A86F /* TrackedTimeEntity+CoreDataClass.swift */; };
+		A5884E8929896C7200F2A86F /* TrackedTimeEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5884E8729896C7200F2A86F /* TrackedTimeEntity+CoreDataProperties.swift */; };
+		A5884E8C2989867600F2A86F /* TimeEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5884E8A2989867600F2A86F /* TimeEntryCell.xib */; };
+		A5884E8D2989867600F2A86F /* TimeEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5884E8B2989867600F2A86F /* TimeEntryCell.swift */; };
+		A5AA11C9298C005800CA7FD4 /* TimeEntryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AA11C8298C005800CA7FD4 /* TimeEntryCellViewModel.swift */; };
+		A5C297A32989020F001FC43F /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C297A22989020F001FC43F /* BaseCoordinator.swift */; };
+		A5C297A52989021F001FC43F /* TimeTrackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C297A42989021F001FC43F /* TimeTrackCoordinator.swift */; };
+		A5C297A729890259001FC43F /* TimeTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C297A629890259001FC43F /* TimeTrackViewModel.swift */; };
+		A5C297B729890738001FC43F /* TrackedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C297B629890738001FC43F /* TrackedTime.swift */; };
+		A5C297BD298908FE001FC43F /* TrackedTimeEntryLocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C297BC298908FE001FC43F /* TrackedTimeEntryLocalDataService.swift */; };
+		A5C297C029890E7E001FC43F /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C297BF29890E7E001FC43F /* TimerService.swift */; };
+		A5CA5626298D466500995EDC /* TimeIntervalFormatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5625298D466500995EDC /* TimeIntervalFormatTest.swift */; };
+		A5CA5629298D48E900995EDC /* TimerServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5628298D48E900995EDC /* TimerServiceTest.swift */; };
+		A5CA562C298D48FC00995EDC /* TimeRunnerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA562B298D48FC00995EDC /* TimeRunnerServiceMock.swift */; };
+		A5CA562E298D4A0300995EDC /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA562D298D4A0300995EDC /* UserDefaultsMock.swift */; };
+		A5CA5632298D6BCF00995EDC /* TimeTrackCoordinatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5631298D6BCF00995EDC /* TimeTrackCoordinatorTest.swift */; };
+		A5CA5634298D6D6400995EDC /* TrackedTimeEntryLocalDataServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5633298D6D6400995EDC /* TrackedTimeEntryLocalDataServiceMock.swift */; };
+		A5CA5636298D6DD900995EDC /* TimerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5635298D6DD900995EDC /* TimerServiceMock.swift */; };
+		A5CA5638298D6EF900995EDC /* TimeTrackViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5637298D6EF900995EDC /* TimeTrackViewModelTest.swift */; };
+		A5CA563B298EB68800995EDC /* TimeEntryCellViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA563A298EB68800995EDC /* TimeEntryCellViewModelTest.swift */; };
+		A5CA563D298EB99F00995EDC /* TimeRunnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA563C298EB99F00995EDC /* TimeRunnerService.swift */; };
+		A5D749342987FDE300DE7D6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D749332987FDE300DE7D6E /* AppDelegate.swift */; };
+		A5D749362987FDE300DE7D6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D749352987FDE300DE7D6E /* SceneDelegate.swift */; };
+		A5D7493D2987FDE400DE7D6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D7493C2987FDE400DE7D6E /* Assets.xcassets */; };
+		A5D749402987FDE400DE7D6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D7493E2987FDE400DE7D6E /* LaunchScreen.storyboard */; };
+		A5D7494B2987FF8700DE7D6E /* TimeTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D749492987FF8700DE7D6E /* TimeTrackViewController.swift */; };
+		A5D7494C2987FF8700DE7D6E /* TimeTrackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5D7494A2987FF8700DE7D6E /* TimeTrackViewController.xib */; };
+		BF0FAB15A2B396A6BD61BC3F /* Pods_Precious_TimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B3F5FDF040B2E300F903A7 /* Pods_Precious_TimeTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A5C297B029890588001FC43F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5D749282987FDE300DE7D6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5D7492F2987FDE300DE7D6E;
+			remoteInfo = "Precious Time";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1EE91746720476B955B47DFC /* Pods-Precious TimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Precious TimeTests.release.xcconfig"; path = "Target Support Files/Pods-Precious TimeTests/Pods-Precious TimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		2C5D1B4A626F6041ECE9E687 /* Pods_Precious_Time.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Precious_Time.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CDF11979C2D57995EA9E1C5 /* Pods-Precious TimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Precious TimeTests.debug.xcconfig"; path = "Target Support Files/Pods-Precious TimeTests/Pods-Precious TimeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		949A51EF32298D2B39DF96A0 /* Pods-Precious Time.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Precious Time.debug.xcconfig"; path = "Target Support Files/Pods-Precious Time/Pods-Precious Time.debug.xcconfig"; sourceTree = "<group>"; };
+		A544CE55298C32BE00227534 /* TimeInterval+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Format.swift"; sourceTree = "<group>"; };
+		A5884E7C2989636A00F2A86F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A5884E80298963D800F2A86F /* PreciousTimeDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PreciousTimeDataModel.xcdatamodel; sourceTree = "<group>"; };
+		A5884E8629896C7200F2A86F /* TrackedTimeEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrackedTimeEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A5884E8729896C7200F2A86F /* TrackedTimeEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrackedTimeEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A5884E8A2989867600F2A86F /* TimeEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeEntryCell.xib; sourceTree = "<group>"; };
+		A5884E8B2989867600F2A86F /* TimeEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntryCell.swift; sourceTree = "<group>"; };
+		A5AA11C8298C005800CA7FD4 /* TimeEntryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellViewModel.swift; sourceTree = "<group>"; };
+		A5C297A22989020F001FC43F /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		A5C297A42989021F001FC43F /* TimeTrackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackCoordinator.swift; sourceTree = "<group>"; };
+		A5C297A629890259001FC43F /* TimeTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackViewModel.swift; sourceTree = "<group>"; };
+		A5C297AC29890588001FC43F /* Precious TimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Precious TimeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5C297B629890738001FC43F /* TrackedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedTime.swift; sourceTree = "<group>"; };
+		A5C297BC298908FE001FC43F /* TrackedTimeEntryLocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedTimeEntryLocalDataService.swift; sourceTree = "<group>"; };
+		A5C297BF29890E7E001FC43F /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		A5CA5625298D466500995EDC /* TimeIntervalFormatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalFormatTest.swift; sourceTree = "<group>"; };
+		A5CA5628298D48E900995EDC /* TimerServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceTest.swift; sourceTree = "<group>"; };
+		A5CA562B298D48FC00995EDC /* TimeRunnerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRunnerServiceMock.swift; sourceTree = "<group>"; };
+		A5CA562D298D4A0300995EDC /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
+		A5CA5631298D6BCF00995EDC /* TimeTrackCoordinatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackCoordinatorTest.swift; sourceTree = "<group>"; };
+		A5CA5633298D6D6400995EDC /* TrackedTimeEntryLocalDataServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedTimeEntryLocalDataServiceMock.swift; sourceTree = "<group>"; };
+		A5CA5635298D6DD900995EDC /* TimerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceMock.swift; sourceTree = "<group>"; };
+		A5CA5637298D6EF900995EDC /* TimeTrackViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackViewModelTest.swift; sourceTree = "<group>"; };
+		A5CA563A298EB68800995EDC /* TimeEntryCellViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellViewModelTest.swift; sourceTree = "<group>"; };
+		A5CA563C298EB99F00995EDC /* TimeRunnerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRunnerService.swift; sourceTree = "<group>"; };
+		A5D749302987FDE300DE7D6E /* Precious Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Precious Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5D749332987FDE300DE7D6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A5D749352987FDE300DE7D6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A5D7493C2987FDE400DE7D6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5D7493F2987FDE400DE7D6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5D749412987FDE400DE7D6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5D749492987FF8700DE7D6E /* TimeTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackViewController.swift; sourceTree = "<group>"; };
+		A5D7494A2987FF8700DE7D6E /* TimeTrackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTrackViewController.xib; sourceTree = "<group>"; };
+		F6B3F5FDF040B2E300F903A7 /* Pods_Precious_TimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Precious_TimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBF272940FCA83F5179C7198 /* Pods-Precious Time.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Precious Time.release.xcconfig"; path = "Target Support Files/Pods-Precious Time/Pods-Precious Time.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5C297A929890588001FC43F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF0FAB15A2B396A6BD61BC3F /* Pods_Precious_TimeTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D7492D2987FDE300DE7D6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26F793AE956EF06A4295FE6C /* Pods_Precious_Time.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		012A5CF605CBF1BAFB1897B3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				949A51EF32298D2B39DF96A0 /* Pods-Precious Time.debug.xcconfig */,
+				FBF272940FCA83F5179C7198 /* Pods-Precious Time.release.xcconfig */,
+				5CDF11979C2D57995EA9E1C5 /* Pods-Precious TimeTests.debug.xcconfig */,
+				1EE91746720476B955B47DFC /* Pods-Precious TimeTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A544CE54298C32AE00227534 /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				A544CE55298C32BE00227534 /* TimeInterval+Format.swift */,
+			);
+			path = Extenstions;
+			sourceTree = "<group>";
+		};
+		A5884E7E298963C000F2A86F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A5884E7C2989636A00F2A86F /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A5AA11C5298C002B00CA7FD4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5D749492987FF8700DE7D6E /* TimeTrackViewController.swift */,
+				A5D7494A2987FF8700DE7D6E /* TimeTrackViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A5AA11C6298C003A00CA7FD4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A5AA11C7298C004100CA7FD4 /* Views */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A5AA11C7298C004100CA7FD4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5884E8B2989867600F2A86F /* TimeEntryCell.swift */,
+				A5884E8A2989867600F2A86F /* TimeEntryCell.xib */,
+				A5AA11C8298C005800CA7FD4 /* TimeEntryCellViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A5C297A129890207001FC43F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A5C297A22989020F001FC43F /* BaseCoordinator.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A5C297AD29890588001FC43F /* Precious TimeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5CA562F298D6BB700995EDC /* Screen */,
+				A5CA562A298D48EB00995EDC /* Mock */,
+				A5CA5627298D48D900995EDC /* Services */,
+				A5CA5624298D464A00995EDC /* Extensions */,
+			);
+			path = "Precious TimeTests";
+			sourceTree = "<group>";
+		};
+		A5C297B52989072F001FC43F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5884E8629896C7200F2A86F /* TrackedTimeEntity+CoreDataClass.swift */,
+				A5884E8729896C7200F2A86F /* TrackedTimeEntity+CoreDataProperties.swift */,
+				A5C297B629890738001FC43F /* TrackedTime.swift */,
+				A5884E7F298963D800F2A86F /* PreciousTimeDataModel.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5C297BA298908E0001FC43F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A5C297BB298908E5001FC43F /* Local Data */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A5C297BB298908E5001FC43F /* Local Data */ = {
+			isa = PBXGroup;
+			children = (
+				A5C297BC298908FE001FC43F /* TrackedTimeEntryLocalDataService.swift */,
+			);
+			path = "Local Data";
+			sourceTree = "<group>";
+		};
+		A5C297BE29890E71001FC43F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A5884E7E298963C000F2A86F /* CoreData */,
+				A5C297BF29890E7E001FC43F /* TimerService.swift */,
+				A5CA563C298EB99F00995EDC /* TimeRunnerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A5CA5624298D464A00995EDC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5CA5625298D466500995EDC /* TimeIntervalFormatTest.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A5CA5627298D48D900995EDC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A5CA5628298D48E900995EDC /* TimerServiceTest.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A5CA562A298D48EB00995EDC /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				A5CA562B298D48FC00995EDC /* TimeRunnerServiceMock.swift */,
+				A5CA562D298D4A0300995EDC /* UserDefaultsMock.swift */,
+				A5CA5633298D6D6400995EDC /* TrackedTimeEntryLocalDataServiceMock.swift */,
+				A5CA5635298D6DD900995EDC /* TimerServiceMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		A5CA562F298D6BB700995EDC /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				A5CA5630298D6BBD00995EDC /* Main */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		A5CA5630298D6BBD00995EDC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A5CA5639298EB67A00995EDC /* Cell */,
+				A5CA5631298D6BCF00995EDC /* TimeTrackCoordinatorTest.swift */,
+				A5CA5637298D6EF900995EDC /* TimeTrackViewModelTest.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A5CA5639298EB67A00995EDC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A5CA563A298EB68800995EDC /* TimeEntryCellViewModelTest.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A5D749272987FDE300DE7D6E = {
+			isa = PBXGroup;
+			children = (
+				A5D749322987FDE300DE7D6E /* Precious Time */,
+				A5C297AD29890588001FC43F /* Precious TimeTests */,
+				A5D749312987FDE300DE7D6E /* Products */,
+				012A5CF605CBF1BAFB1897B3 /* Pods */,
+				F745C7ACAB1AB7F93BCF31FB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A5D749312987FDE300DE7D6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5D749302987FDE300DE7D6E /* Precious Time.app */,
+				A5C297AC29890588001FC43F /* Precious TimeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5D749322987FDE300DE7D6E /* Precious Time */ = {
+			isa = PBXGroup;
+			children = (
+				A544CE54298C32AE00227534 /* Extenstions */,
+				A5C297BE29890E71001FC43F /* Services */,
+				A5C297B52989072F001FC43F /* Model */,
+				A5C297A129890207001FC43F /* Base */,
+				A5D749572988A21700DE7D6E /* Screen */,
+				A5D749332987FDE300DE7D6E /* AppDelegate.swift */,
+				A5D749352987FDE300DE7D6E /* SceneDelegate.swift */,
+				A5D7493C2987FDE400DE7D6E /* Assets.xcassets */,
+				A5D7493E2987FDE400DE7D6E /* LaunchScreen.storyboard */,
+				A5D749412987FDE400DE7D6E /* Info.plist */,
+			);
+			path = "Precious Time";
+			sourceTree = "<group>";
+		};
+		A5D749572988A21700DE7D6E /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				A5D749582988A21D00DE7D6E /* Main */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		A5D749582988A21D00DE7D6E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A5C297BA298908E0001FC43F /* Services */,
+				A5AA11C6298C003A00CA7FD4 /* Cells */,
+				A5AA11C5298C002B00CA7FD4 /* Views */,
+				A5C297A42989021F001FC43F /* TimeTrackCoordinator.swift */,
+				A5C297A629890259001FC43F /* TimeTrackViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F745C7ACAB1AB7F93BCF31FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C5D1B4A626F6041ECE9E687 /* Pods_Precious_Time.framework */,
+				F6B3F5FDF040B2E300F903A7 /* Pods_Precious_TimeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5C297AB29890588001FC43F /* Precious TimeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5C297B429890588001FC43F /* Build configuration list for PBXNativeTarget "Precious TimeTests" */;
+			buildPhases = (
+				4BEA2EEC5217C72F4E7B6B02 /* [CP] Check Pods Manifest.lock */,
+				A5C297A829890588001FC43F /* Sources */,
+				A5C297A929890588001FC43F /* Frameworks */,
+				A5C297AA29890588001FC43F /* Resources */,
+				A1D3BBFC4310EF4E7E3BE57A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5C297B129890588001FC43F /* PBXTargetDependency */,
+			);
+			name = "Precious TimeTests";
+			productName = "Precious TimeTests";
+			productReference = A5C297AC29890588001FC43F /* Precious TimeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A5D7492F2987FDE300DE7D6E /* Precious Time */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5D749442987FDE400DE7D6E /* Build configuration list for PBXNativeTarget "Precious Time" */;
+			buildPhases = (
+				A5B80E7E67308F3C683D945A /* [CP] Check Pods Manifest.lock */,
+				A5D7492C2987FDE300DE7D6E /* Sources */,
+				A5D7492D2987FDE300DE7D6E /* Frameworks */,
+				A5D7492E2987FDE300DE7D6E /* Resources */,
+				82F58BAB9144BE95C8DAF9EF /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Precious Time";
+			productName = "Precious Time";
+			productReference = A5D749302987FDE300DE7D6E /* Precious Time.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5D749282987FDE300DE7D6E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					A5C297AB29890588001FC43F = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = A5D7492F2987FDE300DE7D6E;
+					};
+					A5D7492F2987FDE300DE7D6E = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = A5D7492B2987FDE300DE7D6E /* Build configuration list for PBXProject "Precious Time" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A5D749272987FDE300DE7D6E;
+			productRefGroup = A5D749312987FDE300DE7D6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5D7492F2987FDE300DE7D6E /* Precious Time */,
+				A5C297AB29890588001FC43F /* Precious TimeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5C297AA29890588001FC43F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D7492E2987FDE300DE7D6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5D749402987FDE400DE7D6E /* LaunchScreen.storyboard in Resources */,
+				A5D7494C2987FF8700DE7D6E /* TimeTrackViewController.xib in Resources */,
+				A5D7493D2987FDE400DE7D6E /* Assets.xcassets in Resources */,
+				A5884E8C2989867600F2A86F /* TimeEntryCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4BEA2EEC5217C72F4E7B6B02 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Precious TimeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82F58BAB9144BE95C8DAF9EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Precious Time/Pods-Precious Time-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Precious Time/Pods-Precious Time-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Precious Time/Pods-Precious Time-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1D3BBFC4310EF4E7E3BE57A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Precious TimeTests/Pods-Precious TimeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Precious TimeTests/Pods-Precious TimeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Precious TimeTests/Pods-Precious TimeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5B80E7E67308F3C683D945A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Precious Time-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A5C297A829890588001FC43F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5CA5626298D466500995EDC /* TimeIntervalFormatTest.swift in Sources */,
+				A5CA5632298D6BCF00995EDC /* TimeTrackCoordinatorTest.swift in Sources */,
+				A5CA563B298EB68800995EDC /* TimeEntryCellViewModelTest.swift in Sources */,
+				A5CA562C298D48FC00995EDC /* TimeRunnerServiceMock.swift in Sources */,
+				A5CA562E298D4A0300995EDC /* UserDefaultsMock.swift in Sources */,
+				A5CA5636298D6DD900995EDC /* TimerServiceMock.swift in Sources */,
+				A5CA5634298D6D6400995EDC /* TrackedTimeEntryLocalDataServiceMock.swift in Sources */,
+				A5CA5629298D48E900995EDC /* TimerServiceTest.swift in Sources */,
+				A5CA5638298D6EF900995EDC /* TimeTrackViewModelTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D7492C2987FDE300DE7D6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5884E81298963D800F2A86F /* PreciousTimeDataModel.xcdatamodeld in Sources */,
+				A5C297BD298908FE001FC43F /* TrackedTimeEntryLocalDataService.swift in Sources */,
+				A5C297A729890259001FC43F /* TimeTrackViewModel.swift in Sources */,
+				A5C297C029890E7E001FC43F /* TimerService.swift in Sources */,
+				A5D749342987FDE300DE7D6E /* AppDelegate.swift in Sources */,
+				A5D749362987FDE300DE7D6E /* SceneDelegate.swift in Sources */,
+				A5884E7D2989636A00F2A86F /* CoreDataManager.swift in Sources */,
+				A5C297B729890738001FC43F /* TrackedTime.swift in Sources */,
+				A5884E8929896C7200F2A86F /* TrackedTimeEntity+CoreDataProperties.swift in Sources */,
+				A5C297A32989020F001FC43F /* BaseCoordinator.swift in Sources */,
+				A5AA11C9298C005800CA7FD4 /* TimeEntryCellViewModel.swift in Sources */,
+				A5CA563D298EB99F00995EDC /* TimeRunnerService.swift in Sources */,
+				A5884E8829896C7200F2A86F /* TrackedTimeEntity+CoreDataClass.swift in Sources */,
+				A5884E8D2989867600F2A86F /* TimeEntryCell.swift in Sources */,
+				A5D7494B2987FF8700DE7D6E /* TimeTrackViewController.swift in Sources */,
+				A544CE56298C32BE00227534 /* TimeInterval+Format.swift in Sources */,
+				A5C297A52989021F001FC43F /* TimeTrackCoordinator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A5C297B129890588001FC43F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5D7492F2987FDE300DE7D6E /* Precious Time */;
+			targetProxy = A5C297B029890588001FC43F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A5D7493E2987FDE400DE7D6E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5D7493F2987FDE400DE7D6E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A5C297B229890588001FC43F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CDF11979C2D57995EA9E1C5 /* Pods-Precious TimeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5LQ8QUYVU3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "rahardyan.Precious-TimeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Precious Time.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Precious Time";
+			};
+			name = Debug;
+		};
+		A5C297B329890588001FC43F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE91746720476B955B47DFC /* Pods-Precious TimeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5LQ8QUYVU3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "rahardyan.Precious-TimeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Precious Time.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Precious Time";
+			};
+			name = Release;
+		};
+		A5D749422987FDE400DE7D6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A5D749432987FDE400DE7D6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5D749452987FDE400DE7D6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 949A51EF32298D2B39DF96A0 /* Pods-Precious Time.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5LQ8QUYVU3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Precious Time/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rahardyan.Precious-Time";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5D749462987FDE400DE7D6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBF272940FCA83F5179C7198 /* Pods-Precious Time.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5LQ8QUYVU3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Precious Time/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rahardyan.Precious-Time";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A5C297B429890588001FC43F /* Build configuration list for PBXNativeTarget "Precious TimeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5C297B229890588001FC43F /* Debug */,
+				A5C297B329890588001FC43F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5D7492B2987FDE300DE7D6E /* Build configuration list for PBXProject "Precious Time" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5D749422987FDE400DE7D6E /* Debug */,
+				A5D749432987FDE400DE7D6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5D749442987FDE400DE7D6E /* Build configuration list for PBXNativeTarget "Precious Time" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5D749452987FDE400DE7D6E /* Debug */,
+				A5D749462987FDE400DE7D6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A5884E7F298963D800F2A86F /* PreciousTimeDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A5884E80298963D800F2A86F /* PreciousTimeDataModel.xcdatamodel */,
+			);
+			currentVersion = A5884E80298963D800F2A86F /* PreciousTimeDataModel.xcdatamodel */;
+			path = PreciousTimeDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A5D749282987FDE300DE7D6E /* Project object */;
+}
