@@ -43,7 +43,7 @@ final class TimerService: TimerServiceType {
     static let shared = TimerService()
     
     var isCommitTracking: Bool {
-        return (userDefaults.object(forKey: "commit_track_date") as? Date) != nil
+        return (userDefaults.object(forKey: "commit_description") as? String) != nil
     }
     
     var trackingCommitDescription: String {
@@ -58,7 +58,6 @@ final class TimerService: TimerServiceType {
     
     private var timeRunner: TimeRunnerServiceType
     private var isTimerRunning = false
-    private var timerStartedDate: Date?
     
     private let timerTickRelay = PublishRelay<TimeInterval>()
     private let commitTrackingRelay = PublishRelay<Void>()
@@ -76,50 +75,54 @@ final class TimerService: TimerServiceType {
     }
     
     func timerTickEvent() -> Observable<TimeInterval> {
-        return timerTickRelay.asObservable().share(scope: .forever)
+        return timerTickRelay.asObservable().share(scope: .whileConnected)
     }
     
     func commitTracking(description: String?) {
         userDefaults.set(description, forKey: "commit_description")
-        userDefaults.set(timerStartedDate, forKey: "commit_track_date")
         commitTrackingRelay.accept(())
     }
     
     func startTimer() {
         
+        if (userDefaults.object(forKey: "timer_start_date") as? Date) == nil || !isCommitTracking {
+            userDefaults.set(Date(), forKey: "timer_start_date")
+        }
+        
         if timeRunner.isRunning {
             return
         }
         
-        if let commitTrackingDate = userDefaults.object(forKey: "commit_track_date") as? Date {
-            let skippedInterval = Date().timeIntervalSince(commitTrackingDate)
-            tickCount = skippedInterval
-        } else {
-            timerStartedDate = Date()
-        }
+        getTickCountFromStoredStarDate()
         
         timerTickRelay.accept(tickCount)
         timeRunner.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            self?.tickCount += 1
+            self?.getTickCountFromStoredStarDate()
             self?.timerTickRelay.accept(self?.tickCount ?? 0)
         }
         
         isTimerRunning = true
     }
     
+    private func getTickCountFromStoredStarDate() {
+        if let timerStartDate = userDefaults.object(forKey: "timer_start_date") as? Date {
+            let skippedInterval = Date().timeIntervalSince(timerStartDate)
+            tickCount = skippedInterval
+        }
+    }
+    
     @discardableResult
     func stopTimer() -> (startDate: Date?, description: String?) {
-        let endDate = userDefaults.object(forKey: "commit_track_date") as? Date
+        let startDate = userDefaults.object(forKey: "timer_start_date") as? Date
         let description = userDefaults.object(forKey: "commit_description") as? String
-        userDefaults.removeObject(forKey: "commit_track_date")
+        userDefaults.removeObject(forKey: "timer_start_date")
         userDefaults.removeObject(forKey: "commit_description")
         isTimerRunning = false
         tickCount = 0
-        timerStartedDate = nil
         timerTickRelay.accept(0)
         timeRunner.invalidate()
         
-        return (startDate: endDate, description: description)
+        return (startDate: startDate, description: description)
     }
 }
 

@@ -70,8 +70,7 @@ class TimeTrackViewController: UIViewController {
         
         let input = TimeTrackViewModel.Input(
             viewDidLoadEvent: viewDidLoadEvent.asObservable(),
-            keyboardAppearEvent: keyboardAppearEvent.map({ _ in ()}),
-            keyboardDisappearEvent: keyboardDisappearEvent.map({ _ in ()}),
+            keyboardAppearEvent: Observable.merge(keyboardAppearEvent.map({ _ in true }), keyboardDisappearEvent.map({ _ in false })),
             startTrackTapEvent: startButton.rx.tap.asObservable().do(afterNext: { [unowned self] in
                 self.view.endEditing(true)
                 

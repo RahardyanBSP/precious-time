@@ -50,7 +50,6 @@ final class TimeTrackViewModelTest: XCTestCase {
         let timeEntriesDriver = scheduler.createObserver([TimeEntryCellViewModel].self)
         let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(),
                                                                      keyboardAppearEvent: .never(),
-                                                                     keyboardDisappearEvent: .never(),
                                                                      startTrackTapEvent: .never(),
                                                                      stopTrackTapEvent: .never(),
                                                                      deleteTrackedTimeEvent: .never(),
@@ -83,7 +82,6 @@ final class TimeTrackViewModelTest: XCTestCase {
         let timeEntriesDriver = scheduler.createObserver([TimeEntryCellViewModel].self)
         let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(),
                                                                      keyboardAppearEvent: .never(),
-                                                                     keyboardDisappearEvent: .never(),
                                                                      startTrackTapEvent: .never(),
                                                                      stopTrackTapEvent: .never(),
                                                                      deleteTrackedTimeEvent: .never(),
@@ -105,7 +103,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_timerTextDriver() throws {
         // GIVEN: timerService ticks 5 times
         mockTimerService.resultTimerTickEvent = scheduler.createColdObservable([.next(1, 1), .next(2, 2), .next(3, 3), .next(4, 4), .next(5, 5)]).asObservable()
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: .never(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: .never(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: .never(), keyboardAppearEvent: .never(), startTrackTapEvent: .never(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
         let timerTextDriver = scheduler.createObserver(String.self)
         output.timerTextDriver
             .drive(timerTextDriver)
@@ -121,7 +119,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_inputTimerAlphaDriver_NotCommitTrackingTime() throws {
         // GIVEN: timerService is not commit tracking time
         mockTimerService.resultIsCommitTracking = false
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), keyboardDisappearEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), startTrackTapEvent: .never(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: scheduler.createColdObservable([.next(2, true), .next(3, false)]).asObservable(), startTrackTapEvent: .never(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
         let inputTimerAlhpaDriver = scheduler.createObserver(CGFloat.self)
         output.inputTimerAlphaDriver
             .drive(inputTimerAlhpaDriver)
@@ -140,7 +138,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_inputTimerAlphaDriver_CommitTrackingTime() throws {
         // GIVEN: timerService is commit tracking time
         mockTimerService.resultIsCommitTracking = true
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), keyboardDisappearEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), startTrackTapEvent: .never(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: scheduler.createColdObservable([.next(2, true), .next(3, false)]).asObservable(), startTrackTapEvent: .never(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
         let inputTimerAlhpaDriver = scheduler.createObserver(CGFloat.self)
         output.inputTimerAlphaDriver
             .drive(inputTimerAlhpaDriver)
@@ -161,7 +159,6 @@ final class TimeTrackViewModelTest: XCTestCase {
         let timeEntryToBeDeleted = TrackedTime(id: UUID().uuidString, description: "delete me", startDate: Date(), endDate: Date())
         let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: .never(),
                                                                      keyboardAppearEvent: .never(),
-                                                                     keyboardDisappearEvent: .never(),
                                                                      startTrackTapEvent: .never(),
                                                                      stopTrackTapEvent: .never(),
                                                                      deleteTrackedTimeEvent: scheduler.createColdObservable([.next(1, (id: timeEntryToBeDeleted.id, deletedIndexPath: IndexPath(row: 0, section: 0)))]).asObservable(),
@@ -189,7 +186,6 @@ final class TimeTrackViewModelTest: XCTestCase {
         mockTimerService.resultStopTimer = (startDate: Date(), description: "test description")
         let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: .never(),
                                                                      keyboardAppearEvent: .never(),
-                                                                     keyboardDisappearEvent: .never(),
                                                                      startTrackTapEvent: .never(),
                                                                      stopTrackTapEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(),
                                                                      deleteTrackedTimeEvent: .never(),
@@ -215,7 +211,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_descriptionFieldHiddenDriver_NotCommitTracking() throws {
         // GIVEN: timerService not commit tracking time
         mockTimerService.resultIsCommitTracking = false
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let descriptionFieldHiddenDriver = scheduler.createObserver(Bool.self)
         output.descriptionFieldHiddenDriver
             .drive(descriptionFieldHiddenDriver)
@@ -234,7 +230,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_descriptionFieldHiddenDriver_CommitTracking() throws {
         // GIVEN: timerService commit tracking time
         mockTimerService.resultIsCommitTracking = true
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let descriptionFieldHiddenDriver = scheduler.createObserver(Bool.self)
         output.descriptionFieldHiddenDriver
             .drive(descriptionFieldHiddenDriver)
@@ -253,7 +249,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_timerTextCommitPositionDriver_NotCommitTracking() throws {
         // GIVEN: timerService is not commit tracking
         mockTimerService.resultIsCommitTracking = false
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let timerTextCommitPositionDriver = scheduler.createObserver(Bool.self)
         output.timerTextCommitPositionDriver
             .drive(timerTextCommitPositionDriver)
@@ -270,7 +266,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_timerTextCommitPositionDriver_CommitTracking() throws {
         // GIVEN: timerService is commit tracking
         mockTimerService.resultIsCommitTracking = true
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: .never(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let timerTextCommitPositionDriver = scheduler.createObserver(Bool.self)
         output.timerTextCommitPositionDriver
             .drive(timerTextCommitPositionDriver)
@@ -288,7 +284,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_timerTextUncommitPositionDriver_NotCommitTracking() throws {
         // GIVEN: timerService is not commit tracking
         mockTimerService.resultIsCommitTracking = false
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: .never(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: .never(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let timerTextUncommitPositionDriver = scheduler.createObserver(Void.self)
         output.timerTextUncommitPositionDriver
             .drive(timerTextUncommitPositionDriver)
@@ -305,7 +301,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_timerTextUncommitPositionDriver_CommitTracking() throws {
         // GIVEN: timerService is commit tracking
         mockTimerService.resultIsCommitTracking = true
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: .never(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: .never(), stopTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let timerTextUncommitPositionDriver = scheduler.createObserver(Void.self)
         output.timerTextUncommitPositionDriver
             .drive(timerTextUncommitPositionDriver)
@@ -322,7 +318,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_startButtonHiddenDriver_NotCommitTracking() throws {
         // GIVEN: timerService is not commit tracking
         mockTimerService.resultIsCommitTracking = false
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let startButtonHiddenDriver = scheduler.createObserver(Bool.self)
         output.startButtonHiddenDriver
             .drive(startButtonHiddenDriver)
@@ -339,7 +335,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_startButtonHiddenDriver_CommitTracking() throws {
         // GIVEN: timerService is commit tracking
         mockTimerService.resultIsCommitTracking = true
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let startButtonHiddenDriver = scheduler.createObserver(Bool.self)
         output.startButtonHiddenDriver
             .drive(startButtonHiddenDriver)
@@ -356,7 +352,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_stopButtonHiddenDriver_NotCommitTracking() throws {
         // GIVEN: timerService is not commit tracking
         mockTimerService.resultIsCommitTracking = false
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let stopButtonHiddenDriver = scheduler.createObserver(Bool.self)
         output.stopButtonHiddenDriver
             .drive(stopButtonHiddenDriver)
@@ -373,7 +369,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_stopButtonHiddenDriver_CommitTracking() throws {
         // GIVEN: timerService is commit tracking
         mockTimerService.resultIsCommitTracking = true
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: Observable.just("")))
         let stopButtonHiddenDriver = scheduler.createObserver(Bool.self)
         output.stopButtonHiddenDriver
             .drive(stopButtonHiddenDriver)
@@ -390,7 +386,7 @@ final class TimeTrackViewModelTest: XCTestCase {
     func testOutput_descriptionLabelDriver() throws {
         // GIVEN: there is tracking commit description in timerService
         mockTimerService.resultTrackingCommitDescription = "test description"
-        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), keyboardDisappearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
+        let output = viewModelSUT.transform(TimeTrackViewModel.Input(viewDidLoadEvent: scheduler.createColdObservable([.next(1, ())]).asObservable(), keyboardAppearEvent: .never(), startTrackTapEvent: scheduler.createColdObservable([.next(2, ())]).asObservable(), stopTrackTapEvent: scheduler.createColdObservable([.next(3, ())]).asObservable(), deleteTrackedTimeEvent: .never(), descriptionTextEvent: .never()))
         let descriptionLabelDriver = scheduler.createObserver(String.self)
         
         output.descriptionLabelDriver

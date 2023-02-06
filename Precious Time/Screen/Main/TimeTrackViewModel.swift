@@ -20,8 +20,7 @@ protocol TimeTrackViewModelType {
 final class TimeTrackViewModel: TimeTrackViewModelType {
     struct Input {
         let viewDidLoadEvent: Observable<Void>
-        let keyboardAppearEvent: Observable<Void>
-        let keyboardDisappearEvent: Observable<Void>
+        let keyboardAppearEvent: Observable<Bool>
         let startTrackTapEvent: Observable<Void>
         let stopTrackTapEvent: Observable<Void>
         let deleteTrackedTimeEvent: Observable<(id: String?, deletedIndexPath: IndexPath)>
@@ -65,13 +64,15 @@ final class TimeTrackViewModel: TimeTrackViewModelType {
     
     private let localData: TrackedTimeEntryLocalDataServiceType
     private let timerService: TimerServiceType
+    private let mainScheduler: SchedulerType
     
     private let disposeBag = DisposeBag()
     
     init(localData: TrackedTimeEntryLocalDataServiceType = TrackedTimeEntryLocalDataService(),
-         timerService: TimerServiceType = TimerService.shared) {
+         timerService: TimerServiceType = TimerService.shared, mainScheduler: SchedulerType = MainScheduler.instance) {
         self.localData = localData
         self.timerService = timerService
+        self.mainScheduler = mainScheduler
     }
     
     func transform(_ input: Input) -> Output {
@@ -100,9 +101,9 @@ final class TimeTrackViewModel: TimeTrackViewModelType {
         
         let inputTimerAlphaDriver = Observable.merge(
             // show the timer when keyboard appear (user trying to type the description)
-            input.keyboardAppearEvent.map({ _ in CGFloat(1.0) }),
+            input.keyboardAppearEvent.filter({ $0 }).map({ _ in CGFloat(1.0) }),
             // hide the timer when keyboard disappear without user tap the start button
-            input.keyboardDisappearEvent.withUnretained(self).filter({ !$0.0.timerService.isCommitTracking }).map({ _ in CGFloat(0.0) }),
+            input.keyboardAppearEvent.filter({ !$0 }).withUnretained(self).filter({ !$0.0.timerService.isCommitTracking }).map({ _ in CGFloat(0.0) }),
             // show the timer when the time service is commit tracking the time
             input.viewDidLoadEvent.withUnretained(self).filter({$0.0.timerService.isCommitTracking }).map({ _ in CGFloat(1.0) })
         ).asDriver(onErrorJustReturn: CGFloat(0.0))
@@ -113,8 +114,8 @@ final class TimeTrackViewModel: TimeTrackViewModelType {
             .withLatestFrom(input.descriptionTextEvent)
             .withUnretained(self)
             .do {
-                $0.0.timerService.startTimer()
                 $0.0.timerService.commitTracking(description: $0.1)
+                $0.0.timerService.startTimer()
             }
             .map({ _ in () })
             .share()
@@ -192,10 +193,12 @@ final class TimeTrackViewModel: TimeTrackViewModelType {
         ).distinctUntilChanged().asDriver(onErrorJustReturn: "")
         
         // start timer but not commit tracking when receiving event from keyboard appear, viewDidLoad with timerService is commit tracking time
-        let timerStartTrigger = Observable.merge(input.keyboardAppearEvent, commitToTrackTrigger, input.viewDidLoadEvent.withUnretained(self).filter({ $0.0.timerService.isCommitTracking }).map({ _ in () }))
+        let timerStartTrigger = Observable.merge(input.keyboardAppearEvent.distinctUntilChanged().filter({ $0 }).map({ _ in ()}),
+                                                 commitToTrackTrigger,
+                                                 input.viewDidLoadEvent.withUnretained(self).filter({ $0.0.timerService.isCommitTracking }).map({ _ in () }))
         
         // stop timer when keyboard disappear
-        let timerStopTrigger = Observable.merge(input.keyboardDisappearEvent)
+        let timerStopTrigger = input.keyboardAppearEvent.filter({ !$0 })
         
         timerStartTrigger
             .withUnretained(self)

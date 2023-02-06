@@ -57,28 +57,34 @@ final class TimerServiceTest: XCTestCase {
         mockTimeRunner.mockIsRunning = false
         let tickObserver = scheduler.createObserver(TimeInterval.self)
         serviceSUT.timerTickEvent()
+            .map({ $0.rounded() })
+            .distinctUntilChanged()
             .bind(to: tickObserver)
             .disposed(by: disposeBag)
         
         // WHEN: starTimer
+        mockUserDefaults.resultTimerStartDate = Calendar.current.date(byAdding: .second, value: -1, to: Date())
         serviceSUT.startTimer()
+        mockTimeRunner.block?(Timer())
         
         scheduler.start()
-        mockTimeRunner.block?(Timer())
         
         // THEN:
         // - it will ask the timeRunner to schedule timer
         // - deliver tick event
+        // - set timerStartDate to user default
         XCTAssert(mockTimeRunner.isScheduledTimerCalled)
         XCTAssert(mockTimeRunner.inputRepeats)
+        XCTAssert(mockUserDefaults.inputKeyValue.contains(where: { $0.key == "timer_start_date" }))
         XCTAssertEqual(mockTimeRunner.inputTimeInterval, 1.0)
-        XCTAssertEqual(tickObserver.events, [.next(0, 0), .next(0, 1.0)])
+        XCTAssertEqual(tickObserver.events, [.next(0, 1.0)])
     }
     
-    func testStartTimer_timerRunnerIsNotRunning_withCommitTrackingDate() throws {
+    func testStartTimer_timerRunnerIsNotRunning_withTimerStartDate() throws {
         // GIVEN: timerRunner is running and there is commit tracking date
         mockTimeRunner.mockIsRunning = false
-        mockUserDefaults.resultCommitTrackDate = Date()
+        mockUserDefaults.resultTimerStartDate = Date()
+        mockUserDefaults.resultCommitDescription = "test description"
         let tickObserver = scheduler.createObserver(TimeInterval.self)
         serviceSUT.timerTickEvent()
             .bind(to: tickObserver)
@@ -93,8 +99,10 @@ final class TimerServiceTest: XCTestCase {
         // THEN:
         // - it will ask the timeRunner to schedule timer
         // - deliver tick event
+        // - it will not ask the user default to set to timer_start_date
         XCTAssert(mockTimeRunner.isScheduledTimerCalled)
         XCTAssert(mockTimeRunner.inputRepeats)
+        XCTAssertFalse(mockUserDefaults.inputKeyValue.contains(where: { $0.key == "timer_start_date" }))
         XCTAssertEqual(mockTimeRunner.inputTimeInterval, 1.0)
     }
     
@@ -108,7 +116,6 @@ final class TimerServiceTest: XCTestCase {
         // it will set commit track date
         XCTAssert(mockUserDefaults.inputKeyValue.contains(where: { $0.key == "commit_description" }))
         XCTAssert(mockUserDefaults.inputKeyValue.contains(where: { ($0.value as? String ?? "") == commitDescription }))
-        XCTAssert(mockUserDefaults.inputKeyValue.contains(where: { $0.key == "commit_track_date" }))
     }
     
     func testStopTimer() throws {
@@ -120,6 +127,6 @@ final class TimerServiceTest: XCTestCase {
         // it will emove commit track date
         XCTAssert(mockUserDefaults.isRemoveObjectCalled)
         XCTAssert(mockUserDefaults.removeObjectKeys.contains("commit_description"))
-        XCTAssert(mockUserDefaults.removeObjectKeys.contains("commit_track_date"))
+        XCTAssert(mockUserDefaults.removeObjectKeys.contains("commit_description"))
     }
 }

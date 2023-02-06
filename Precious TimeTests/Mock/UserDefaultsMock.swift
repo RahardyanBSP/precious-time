@@ -8,7 +8,7 @@
 import Foundation
 
 final class UserDefaultsMock: UserDefaults {
-    var resultCommitTrackDate: Date?
+    var resultTimerStartDate: Date?
     var resultCommitDescription: String?
     var resultAny: Any?
     
@@ -18,8 +18,8 @@ final class UserDefaultsMock: UserDefaults {
     var removeObjectKeys: [String] = []
     
     override func object(forKey defaultName: String) -> Any? {
-        if defaultName == "commit_track_date" {
-            return resultCommitTrackDate
+        if defaultName == "timer_start_date" {
+            return resultTimerStartDate
         } else if defaultName == "commit_description" {
             return resultCommitDescription
         }
@@ -38,7 +38,7 @@ final class UserDefaultsMock: UserDefaults {
     }
     
     func reset() {
-        resultCommitTrackDate = nil
+        resultTimerStartDate = nil
         resultCommitDescription = nil
         resultAny = nil
         
